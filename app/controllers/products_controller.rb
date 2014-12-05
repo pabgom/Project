@@ -10,11 +10,16 @@ class ProductsController < ApplicationController
   end
 
   def show
+		@CategoryName = ''
+		#if(@product.Category?)
+			#@CategoryName = @product.Category.Name	
+		#end
     respond_with(@product)
   end
 
   def new
     @product = Product.new
+		@categories = Category.all
     respond_with(@product)
   end
 

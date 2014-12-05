@@ -22,7 +22,9 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @product.Category %>
+	<%= @CategoryName %>
+	<%= @product.Category.any? %>
+	
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |

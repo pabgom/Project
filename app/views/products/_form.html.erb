@@ -29,7 +29,8 @@
   </div>
   <div class="field">
     <%= f.label :Category_id %><br>
-    <%= f.text_field :Category_id %>
+		<%= f.select(:Category_id, Category.all.collect {|p| [ p.Name, p.id ] }, {include_blank: 'Select One', :selected => @product.Category_id }) %>
+    <!-- <%= f.text_field :Category_id %> -->
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(version: 20141202145536) do
     t.string   "Name"
     t.string   "Description"
     t.string   "Img_url"
-    t.decimal  "Price"
+    t.decimal  "Price",       precision: 10, scale: 0
     t.integer  "Category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "products", ["Category_id"], name: "index_products_on_Category_id"
+  add_index "products", ["Category_id"], name: "index_products_on_Category_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20141202145536) do
     t.datetime "updated_at"
   end
 
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20141202145536) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
