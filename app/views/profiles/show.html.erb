@@ -1,29 +1,52 @@
 <p id="notice"><%= notice %></p>
+<table class="table table-hover table-striped table-bordered">
+	<tr>
+		<td>
+			User Email:
+		</td>
+		<td>
+			<%= @profile.user.email %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Name:
+		</td>
+		<td>
+			<%= @profile.name %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Address:
+		</td>
+		<td>
+			<%= @profile.address %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Phone:
+		</td>
+		<td>
+			<%= @profile.phone %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Date of Birth:
+		</td>
+		<td>
+			<%= @profile.dob %>
+		</td>
+	</tr>	
+</table>
 
-<p>
-  <strong>User:</strong>
-  <%= @profile.user %>
-</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @profile.name %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @profile.address %>
-</p>
+	<div class="pull-left"><%= button_to "Edit", edit_profile_path(@profile), :id => "btnEdit", :class => "btn btn-primary", :method => :get %></div>
+	<div class="pull-right"><%= button_to "Back", profiles_path, :id => "btnBack", :class => "btn btn-danger", :method => :get %></div>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @profile.phone %>
-</p>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @profile.dob %>
-</p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<!-- <%= link_to 'Edit', edit_profile_path(@profile) %> | <%= link_to 'Back', profiles_path %> -->

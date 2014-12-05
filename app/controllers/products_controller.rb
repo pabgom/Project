@@ -1,9 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 	before_filter :authenticate_user!
-
+	
   respond_to :html
-
   def index
     @products = Product.all
     respond_with(@products)
@@ -27,12 +26,14 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+		@product = Product.new(product_params)
     @product.save
     respond_with(@product)
   end
 
   def update
+		puts 
+		
     @product.update(product_params)
     respond_with(@product)
   end
@@ -48,6 +49,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:Name, :Description, :Img_url, :Price, :Category_id)
+      params.require(:product).permit(:Name, :Description, :Img_url, :Img_url_file_name, :Img_url_content_type, :Img_url_file_size, :Img_url_updated_at, :Price, :Category_id)
     end
+
 end
