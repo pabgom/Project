@@ -5,8 +5,9 @@ class ProfilesController < ApplicationController
   respond_to :html
 
   def index
-    @profiles = Profile.all
-    respond_with(@profiles)
+		redirect_to '/myprofile'
+    #@profiles = Profile.all
+    #respond_with(@profiles)
   end
 
   def show
@@ -43,13 +44,13 @@ class ProfilesController < ApplicationController
 	
 	def myprofile
 		 profile = Profile.find_by_user_id(current_user.id)
-
+		 print current_user.id
 		 if profile.nil?
 		 		redirect_to "/profiles/new"
 		 else
 			 @user = User.find(current_user.id)
 			 @profile = Profile.find_by_user_id(@user.id)
-			 redirect_to "/profiles/#{@profile.id}"
+			 #redirect_to "/profiles/#{@profile.id}"
 		 end
  	end
 

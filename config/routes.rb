@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 	
 	
 	get '/myprofile' => 'profiles#myprofile'
+	#get '/index' => 'profiles#myprofile'
 	
 	root :to => 'home#index'
 	

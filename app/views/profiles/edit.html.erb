@@ -3,8 +3,8 @@
 <%= render 'form' %>
 
 
-	<%= button_to 'Show', @profile, :class => 'btn btn-primary pull-left' %> 
+	<!-- <%= button_to 'Show', @profile, :class => 'btn btn-primary pull-left' %> -->
 
-		<%= button_to 'Back', profiles_path, :class => 'btn btn-danger pull-right' %>
+<%= button_to 'Back', '/myprofile', :class => 'btn btn-danger pull-right', :method => :get %>
 </div>
   </div>

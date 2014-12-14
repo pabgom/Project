@@ -11,28 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :Name %><br>
-    <%= f.text_field :Name %>
+    <%= f.text_field :Name, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :Description %><br>
-    <%= f.text_field :Description %>
+  <div class="form-group">
+    <%= f.label :Description %>
+    <%= f.text_field :Description, :class => 'form-control' %>
   </div>
   <!--<div class="field">     <%= f.label :Img_url %><br>     <%= f.text_field :Img_url %>   </div>-->
-  <div class="field">
-    <%= f.label :Price %><br>
-    <%= f.text_field :Price %>
+  <div class="form-group">
+    <%= f.label :Price %>
+    <%= f.text_field :Price, :class => 'form-control' %>
   </div>
-	<div class="field">
-		<%= f.file_field :Img_url %>
+	<div class="form-group">
+		<%= f.label :Img_url, 'Image' %>
+		<%= image_tag @product.Img_url.url(:medium).gsub('%', '?') %><br>
+		<%= f.file_field :Img_url, :class => 'form-control' %>
 	</div>
-  <div class="field">
-    <%= f.label :Category_id %><br>
-		<%= f.select(:Category_id, Category.all.collect {|p| [ p.Name, p.id ] }, {include_blank: 'Select One', :selected => @product.Category_id }) %>
+  <div class="form-group">
+    <%= f.label :Category_id %>
+		<%= f.select(:Category_id, Category.all.collect {|p| [ p.Name, p.id ] }, {include_blank: 'Select One', :selected => @product.Category_id },
+{:class => "form-control"}) %>
     <!-- <%= f.text_field :Category_id %> -->
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit 'Save', :class => 'btn btn-success pull-left' %>
+  
 <% end %>
