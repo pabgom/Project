@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'cart/index'
+	get '/cart/:id' => 'cart#add'
+	get '/cart/clear' => 'cart#clearCart'
+	
   resources :categories
 
   resources :products
@@ -12,6 +16,9 @@ Rails.application.routes.draw do
 	
 	get '/myprofile' => 'profiles#myprofile'
 	#get '/index' => 'profiles#myprofile'
+	
+	
+	get '/search' => 'home#search'
 	
 	root :to => 'home#index'
 	

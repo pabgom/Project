@@ -1,0 +1,64 @@
+<h1>My Cart</h1>
+
+<% total = 0 %>
+
+<% if @cart.empty? %>
+ <p>Your Cart is empty.</p>
+<% else %>
+	<div style="clear:both; font-weight: bold; height: 35px;">
+		<div class="push-left col-xs-3" style="text-align:center;">
+		Image
+		</div>
+		<div class="push-left col-xs-3" style="text-align:center;">
+			Name
+		</div>
+		<div class="push-left col-xs-3" style="text-align:center;">
+			Quantity
+		</div>
+		<div class="push-left col-xs-3" style="text-align:center;">
+			Price
+		</div>
+	</div>
+<% end %>
+	
+
+	<% @cart.each do |id, quantity| %>
+		<% product = Product.find_by_id(id) %>
+		<div style="clear:both;">
+			<div class="push-left col-xs-3" style="text-align:center;">
+				<%= image_tag product.Img_url.url(:thumb).gsub('%', '?') %>	
+			</div>
+			<div class="push-left col-xs-3" style="text-align:center;">
+				<%= product.Name %>
+			</div>
+			<div class="push-left col-xs-3" style="text-align:center;">
+				<%= quantity %>
+			</div>
+			<div class="push-left col-xs-3" style="text-align:center;">
+				<%= number_to_currency(quantity * product.Price, :unit => "€ ") %> 
+			</div>
+		</div>	
+		<% total += quantity * product.Price %>
+	<% end %>
+
+
+	<div style="clear:both">
+		<div class="push-left col-xs-9" style="text-align:center;">
+			<b>Total</b>
+		</div>
+		<div class="push-left col-xs-3" style="text-align:center;">
+			<%= number_to_currency(total, :unit => "€") %>
+		</div>
+	</div>
+
+	<div class="push-right col-xs-3" style="margin-top:20px;" >
+		<% if user_signed_in? %>		
+			<input type="button" class="btn btn-Primary" value="Pay" style="color:#FFFFFF;" />		
+		<% else %>
+			<div class="push-left;">
+				<p>You need <%= link_to 'Sign in', new_user_session_path %> to buy</p>
+			</div>
+		<% end %>
+		<a href="/cart/clear" class="btn btn-danger" style="color:#FFFFFF;">Delete all Products</a>
+	<!--	<input type="button" value="Delete all Products" /> -->
+	</div>

@@ -1,0 +1,64 @@
+<script type="text/javascript">
+	function addCart(id)
+	{
+		$.ajax({
+			url: "http://college-167282.euw1-2.nitrousbox.com/cart/" + id,
+			context: document.body
+		}).done(function() {
+			alert("You are add the product to your cart.");
+			return false;
+		});
+	}
+	
+</script>
+
+<%= @carro %>
+
+
+
+<input class="btn btn-primary" Value="New Search" onclick="$('#divNewSearch').toggle(500);" />
+<div id="divNewSearch" style="display:none" class="form-group">
+	<h4 style="text-decoration: underline;">New Search</h4>	
+	<%= form_tag "", :method => 'get' do %>
+  <div class="col-xs-4">
+  	Search Product: <%= text_field_tag :searchProduct, params[:searchProduct], :class =>'form-control' %>
+	</div>
+	<div class="col-xs-4">
+		Category: <%= select(:get, :SearchCategory, Category.all.collect {|p| [ p.Name, p.id ] }, {include_blank: 'Select One'}, {:class => "form-control"}) %>
+	</div>
+	<div style="clear:both;"></div>
+	<div style="margin-top:20px;">
+		<%= submit_tag "Search", :class => "btn btn-info" %>
+	</div>
+	<% end %>
+</div>
+<div style="clear:both"></div>
+<div style="margin-top:35px;">
+  <% @products.each do |product| %>
+	<div style="margin-top: 10px; clear:both;">
+		<div class="push-left col-xs-3">
+			<%= image_tag product.Img_url.url(:thumb).gsub('%', '?') %>
+			<!-- <%= product.Img_url.url(:small).gsub('%', '?') %>	-->
+		</div>
+		<div class="push-left col-xs-7">
+			<div><%= product.Name %></div>
+			<div><%= product.Description %></div>
+		</div>
+		<div class="push-left col-xs-2" style="text-align: center;">
+			<div>Price</div>
+			<div style="border: 1px solid grey; font-size: 16px;">
+			<%= product.Price %> €
+			</div>
+			<div>
+				<div style="cursor: pointer;" onclick="addCart('<%= product.id %>');">Add to Cart</div>
+				<!-- <a onclick="return " href="/#" target="_blank"></a> -->
+			</div>
+			<div>
+			
+			</div>
+			<!-- <%= product.Category.Name %> -->
+		</div>
+	</div>
+	
+	<% end %>
+</div>

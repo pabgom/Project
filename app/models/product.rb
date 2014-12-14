@@ -9,4 +9,12 @@ class Product < ActiveRecord::Base
 	validates_attachment_size :Img_url, :less_than => 5.megabytes 
 	validates_attachment_content_type :Img_url, :content_type => ['image/jpeg', 'image/png']
 	
+	def self.search(name, category)		
+		where(["Name like ? and Category_id = ?", "%#{name}%", 1]) 
+	end
+	
+	def self.search(query)
+		where("Name like ?", "#{query}") 
+	end
+	
 end

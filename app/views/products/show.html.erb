@@ -12,9 +12,9 @@
 
 <p>
   <strong>Img url:</strong>
-	<%= image_tag @product.Img_url.url(:thumb) %>
+	<%= image_tag @product.Img_url.url(:thumb).gsub('%', '?') %>
 	
-  <!-- <%= @product.Img_url.url.gsub('%', '?') %> -->
+  <!-- <%= @product.Img_url.url(:small).gsub('%', '?') %> -->
 </p>
 
 <p>
