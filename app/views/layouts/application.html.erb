@@ -19,19 +19,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Project name</a>
+          <a class="navbar-brand" href="/">BUYPROD</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="/search">Search</a></li>
             <li><a href="#contact">Contact</a></li>
 						<% if user_signed_in? %>
-						<li><%= link_to  current_user.email , '/myprofile' %></li><li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+						<li><%= link_to  'Orders', '/my_orders' %></li>
+						<li><%= link_to  current_user.email , '/myprofile' %></li>
+						<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
 							<% else %>
  						<li><%= link_to 'Register', new_user_registration_path %> </li>
 						<li><%= link_to 'Sign in', new_user_session_path %></li>
 						<% end %>
+						
+						<% if session["cart"] != nil and session["cart"] != {} and session["cart"] != '' %>						
+						<li style="margin-top: 7px;" onclick="document.location.href='/cart'">
+							<img src='/images/cart.png' alt="" widt="35px" height="35px" />
+						</li>
+						<% end %>
+						
 						<!--
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>

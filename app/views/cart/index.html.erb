@@ -19,13 +19,11 @@
 			Price
 		</div>
 	</div>
-<% end %>
-	
 
 	<% @cart.each do |id, quantity| %>
 		<% product = Product.find_by_id(id) %>
 		<div style="clear:both;">
-			<div class="push-left col-xs-3" style="text-align:center;">
+			<div class="push-left col-xs-2" style="text-align:center;">
 				<%= image_tag product.Img_url.url(:thumb).gsub('%', '?') %>	
 			</div>
 			<div class="push-left col-xs-3" style="text-align:center;">
@@ -34,9 +32,12 @@
 			<div class="push-left col-xs-3" style="text-align:center;">
 				<%= quantity %>
 			</div>
-			<div class="push-left col-xs-3" style="text-align:center;">
+			<div class="push-left col-xs-2" style="text-align:center;">
 				<%= number_to_currency(quantity * product.Price, :unit => "€ ") %> 
 			</div>
+			<div class="push-left col-xs-2" style="text-align: center;">
+				<%= link_to 'Remove',  '/cart/delete/'+ product.id.to_s, :class => 'btn btn-danger' %>
+      </div>
 		</div>	
 		<% total += quantity * product.Price %>
 	<% end %>
@@ -51,14 +52,22 @@
 		</div>
 	</div>
 
-	<div class="push-right col-xs-3" style="margin-top:20px;" >
+	<div class="push-right col-xs-9" style="margin-top:20px;" >
 		<% if user_signed_in? %>		
-			<input type="button" class="btn btn-Primary" value="Pay" style="color:#FFFFFF;" />		
+		<div class="push-left col-xs-3" style="color:#FFFFFF;">		
+			<a href="/cart/pay" class="btn btn-success" style="color:#FFFFFF;">Pay</a>
+			<!-- <input type="button" class="btn btn-Primary" value="Pay" style="color:#FFFFFF;" /> -->
+			</div>
 		<% else %>
-			<div class="push-left;">
-				<p>You need <%= link_to 'Sign in', new_user_session_path %> to buy</p>
+			<div class="push-left col-xs-3">
+				<p style="line-height: 30px;">You need <%= link_to 'Sign in', new_user_session_path %> to buy</p>
 			</div>
 		<% end %>
+		<div class="push-left col-xs-3" style="font-color:#FFFFFF;">
 		<a href="/cart/clear" class="btn btn-danger" style="color:#FFFFFF;">Delete all Products</a>
+			</div>
 	<!--	<input type="button" value="Delete all Products" /> -->
 	</div>
+
+<% end %>
+	

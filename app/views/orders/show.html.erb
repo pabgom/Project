@@ -1,0 +1,30 @@
+<section>
+	<div class="container">
+           <div class="row">
+               <div class="col-lg-12 text-center">
+                   <h2>Order Details</h2>
+                   <hr>
+               </div>
+           </div>
+<div class="row">
+               <div class="col-lg-8 col-lg-offset-2">
+	<p id="notice"><%= notice %></p>
+
+<div class="push-left">
+  <strong>User:</strong>
+	<%= @order.user.email %>
+</div>
+
+<div class="push-left">
+  <strong>Total:</strong>
+  <%= @order.total %>
+</div>
+								 
+								 
+	</div>
+	<table></table>
+		</div>
+<!-- link_to 'Edit', edit_order_path(@order), :class => 'btn btn-' > | -->
+		<%= link_to 'Back', orders_path, :class => 'btn btn-danger', :style => 'color: #FFFFFF;' %>
+		 </div>
+</section>

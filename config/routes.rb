@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+	get 'cart' => 'cart#index'
   get 'cart/index'
+	get '/cart/delete/:id' => 'cart#remove'
+	get '/cart/clear' => 'cart#clearcart'
+	get '/cart/pay' => 'cart#success'
 	get '/cart/:id' => 'cart#add'
-	get '/cart/clear' => 'cart#clearCart'
+	
+	
 	
   resources :categories
-
+	resources :orders
+	get 'orders' => 'orders#index'
+	resources :orderitems
+	
+	
   resources :products
 
   get 'home/index'
@@ -16,11 +25,19 @@ Rails.application.routes.draw do
 	
 	get '/myprofile' => 'profiles#myprofile'
 	#get '/index' => 'profiles#myprofile'
-	
+	get '/about_us' => 'home#about_us'
 	
 	get '/search' => 'home#search'
+	get '/my_orders' => 'orders#my_orders'
+	get '/my_orders/detail/:id' => 'orders#detail' As :my_orders
+	
 	
 	root :to => 'home#index'
+	
+	
+	
+	
+	
 	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

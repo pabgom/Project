@@ -1,0 +1,42 @@
+<% total = 0 %>
+<div style="margin-top: 10px; clear:both;">
+				<div class="push-left col-xs-3" style="text-align:center;">
+					<b>Image</b>
+		</div>
+				<div class="push-left col-xs-7">
+					<b>Name & Description</b>
+		</div>
+		<div class="push-left col-xs-2" style="text-align: center;"><b>Price</b></div>
+
+	</div>
+<div style="margin-top:35px;">
+	<% @order.orderitem.each do |orderitem| %>
+	<% product = Product.find(orderitem.product_id) %>	
+	
+	
+	<div style="margin-top: 10px; clear:both;">
+		<div class="push-left col-xs-3" style="text-align:center;">
+			<%= image_tag product.Img_url.url(:thumb).gsub('%', '?') %>			
+		</div>
+		<div class="push-left col-xs-7">
+			<div style="margin-top:5px;"><b><%= product.Name %></b></div>
+			<div style="margin-top:10px;"><%= product.Description %></div>
+		</div>
+		<div class="push-left col-xs-2" style="text-align: center;">
+			<div style="border: 1px solid grey; font-size: 16px;">
+				<%=	number_to_currency(orderitem.total, :unit => "€ ") %>
+			</div>
+		</div>
+	</div>
+	
+	<% total +=  orderitem.total %>
+	<% end %>
+	
+	<div style="margin-top: 35px; clear:both;">
+				<div class="push-left col-xs-10" style="text-align: center;">
+					<b>Total</b>
+		</div>
+		<div class="push-left col-xs-2" style="text-align: center;"><b><%= number_to_currency(total, :unit => "€ ") %></b></div>
+
+	</div>
+</div>
