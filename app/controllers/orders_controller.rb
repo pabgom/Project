@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+	before_filter :authenticate_user!
   respond_to :html
 
   def index
@@ -44,6 +44,10 @@ class OrdersController < ApplicationController
 
 	def detail
 		@order = Order.find(params[:id])
+	end
+
+	def allorders
+		@orders = Order.all
 	end
 	
   private

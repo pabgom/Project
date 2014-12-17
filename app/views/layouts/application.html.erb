@@ -27,7 +27,13 @@
             <li><a href="/search">Search</a></li>
             <li><a href="#contact">Contact</a></li>
 						<% if user_signed_in? %>
-						<li><%= link_to  'Orders', '/my_orders' %></li>
+						
+						<% if current_user.admin? %>
+						<li><%= link_to  'Orders', '/all_orders' %></li>
+						<li><%= link_to  'Products', '/products' %></li>
+						<% else %>
+						<li><%= link_to  'My Orders', '/my_orders' %></li>
+						<% end %>
 						<li><%= link_to  current_user.email , '/myprofile' %></li>
 						<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
 							<% else %>

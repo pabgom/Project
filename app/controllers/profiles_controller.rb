@@ -18,8 +18,13 @@ class ProfilesController < ApplicationController
     #@profile = Profile.new
     #respond_with(@profile)
 		@user = User.find(current_user.id)
+		if @user.profile == nil
 		@profile = Profile.new
  		@profile.user_id = @user.id
+		@profile.save
+		else
+			@profile = @user.profile
+		end
  		respond_with(@profile)
   end
 

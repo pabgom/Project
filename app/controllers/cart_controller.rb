@@ -1,4 +1,6 @@
 class CartController < ApplicationController
+	before_filter :authenticate_user!
+	
 	def clearcart
 		# set the session variable to nil and redirect		
 		puts '------------------------------------------------Clear'
@@ -12,16 +14,7 @@ class CartController < ApplicationController
 		puts session["cart"]
  		id = params[:id]
 		cart = session["cart"] || {}
-		# if the cart has already been created, use the existing cart
-		# else create a blank cart
-		#if session[:cart] then
-		#	cart = session[:cart]
-		#else
-		#	session[:cart] = {}
-		#	cart = session[:cart]
-		#end
-		# if the product has alreadd been added to the cart, increment the value
-		# else set the value to 1
+		
  		if cart[id] then
 			cart[id] = cart[id] + 1
 		else
@@ -66,6 +59,9 @@ class CartController < ApplicationController
  	end
 		
 	def success
+		if session[:cart] == nil or session[:cart] == {}
+			redirect_to :action => :index
+		end 
 		cart = session[:cart]
 		
 		order = Order.new

@@ -3,8 +3,11 @@
 				<div class="push-left col-xs-3" style="text-align:center;">
 					<b>Image</b>
 		</div>
-				<div class="push-left col-xs-7">
+				<div class="push-left col-xs-5">
 					<b>Name & Description</b>
+		</div>
+					<div class="push-left col-xs-2">
+					<b>Quantity</b>
 		</div>
 		<div class="push-left col-xs-2" style="text-align: center;"><b>Price</b></div>
 
@@ -18,9 +21,12 @@
 		<div class="push-left col-xs-3" style="text-align:center;">
 			<%= image_tag product.Img_url.url(:thumb).gsub('%', '?') %>			
 		</div>
-		<div class="push-left col-xs-7">
+		<div class="push-left col-xs-5">
 			<div style="margin-top:5px;"><b><%= product.Name %></b></div>
 			<div style="margin-top:10px;"><%= product.Description %></div>
+		</div>
+		<div class="push-left col-xs-2">
+					<%= orderitem.quantity %>
 		</div>
 		<div class="push-left col-xs-2" style="text-align: center;">
 			<div style="border: 1px solid grey; font-size: 16px;">
@@ -39,4 +45,9 @@
 		<div class="push-left col-xs-2" style="text-align: center;"><b><%= number_to_currency(total, :unit => "€ ") %></b></div>
 
 	</div>
+	<% if current_user.admin? %>
+	<%= link_to 'Back', '/my_orders', :class => 'btn btn-danger pull-left', :style => 'color: #FFFFFF'  %>
+	<% else %>
+	<%= link_to 'Back', '/all_orders', :class => 'btn btn-danger pull-left', :style => 'color: #FFFFFF'  %>
+	<% end %>
 </div>

@@ -29,8 +29,8 @@ Rails.application.routes.draw do
 	
 	get '/search' => 'home#search'
 	get '/my_orders' => 'orders#my_orders'
-	get '/my_orders/detail/:id' => 'orders#detail' As :my_orders
-	
+	get '/my_orders/detail/:id' => 'orders#detail' #, :as =>  :my_orders
+	get '/all_orders' => 'orders#allorders'
 	
 	root :to => 'home#index'
 	
